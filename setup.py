@@ -11,12 +11,12 @@ setuptools.setup(
     description="All-purpose python utils",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/clockworcarry/py_common_utils",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        "Operating System :: Linux",
     ],
     python_requires='>=3.6',
 )
