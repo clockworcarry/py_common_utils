@@ -1,6 +1,9 @@
 import os
 import errno
 
+def test_import():
+    return "Import works!"
+
 def create_file_and_parent_folders():
     """
     Creates a file with desired mode and creates necessary folders if this behavior is wanted and they do not exist.
