@@ -1,13 +1,16 @@
 import logging
+import sys
 
-default_log_formatter = logging.Formatter("%(asctime)s %(message)s")
+default_log_formatter = logging.Formatter("[%(asctime)s] %(levelname)s | %(module)s:%(lineno)s | %(funcName)s | %(message)s")
 
-def setup_logger(name, log_file_path, formatter = default_log_formatter, level=logging.INFO):
+
+def setup_logger(name, log_file_path, duplicate_to_stdout=False, formatter = default_log_formatter, level=logging.INFO):
     """[summary]
 
     Args:
         name (str): name of the logger
         log_file_path (str) absolute file path where the logger will output
+        duplicate_to_stdout (boolean) indicates whether the log message will be sent to the standard output in addition to the log file
         formatter (logging.Formatter, optional): Optional format for the logs. Defaults to default_log_formatter.
         level (int, optional): logging level filter. Defaults to logging.INFO.
 
@@ -34,6 +37,11 @@ def setup_logger(name, log_file_path, formatter = default_log_formatter, level=l
     logger = logging.getLogger(name)
     logger.setLevel(level)
     logger.addHandler(handler)
+    
+    if duplicate_to_stdout:
+        consoleHandler = logging.StreamHandler()
+        consoleHandler.setFormatter(formatter)
+        logger.addHandler(logging.StreamHandler(sys.stdout))
 
     return logger
 
@@ -49,6 +57,11 @@ if __name__ == "__main__":
         print(str(val_err))
     
     logger = setup_logger('logger_1', '/home/ghelie/fin_app_logs')
+    logger.info("Info")
+    logger.error("Err")
+    logger.critical("Critical")
+
+    logger = setup_logger('logger_1', '/home/ghelie/fin_app_logs', True)
     logger.info("Info")
     logger.error("Err")
     logger.critical("Critical")
