@@ -28,7 +28,7 @@ def setup_logger(name, log_file_path, duplicate_to_stdout=False, formatter = def
     #logger already exists and setup called, reset it
     if name in logging.Logger.manager.loggerDict:
         logger = logging.getLogger(name)
-        while logger.hasHandlers():
+        while logger.hasHandlers() and len(logger.handlers) > 0:
             logger.removeHandler(logger.handlers[0])
 
     handler = logging.FileHandler(log_file_path)        
