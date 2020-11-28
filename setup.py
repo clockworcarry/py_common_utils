@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py_common_utils_gh",
-    version="1.0.0",
+    version="1.0.1",
     author="Gabriel Helie",
     author_email="ghfin123@gmail.com",
     description="All-purpose python utils",
